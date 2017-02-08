@@ -1,0 +1,55 @@
+<style>
+.heading
+{
+  width: 45%;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    margin-left: 27%;
+    font-size: xx-large;
+}
+.tablestyle
+{
+  border-style: hidden;
+}
+</style>
+<div class="container-fluid" style="margin-top: 3%;">
+<div class="row">
+<div class="col-sm-2 sidenav">
+    </div>
+    <div class="col-sm-8" >
+  <button type="button" class="btn btn-primary btn-lg btn-block heading">Cancellation</button>
+  <div class="row content table" style="margin-left: 5%;">
+<table class="table" style="margin-left: 11%">
+            <thead>
+<tbody>
+<tr class="tablestyle"><th>  Enter Your Booking ID:</th>
+  <td><input type="text" ng-model="id"/></td></tr>
+ <tr class="tablestyle"> <th>  Enter Your MovieName:</th>
+  <td><input type="text" ng-model="name"/></td></tr>
+  <tr class="tablestyle">
+  <td><button ng-click="getdetails()" class="btn btn-primary" style="margin-left: 57%;">Get Details</button></td></tr>
+
+<tr class="tablestyle" ng-show="show">
+                            <th>Booking ID</th>
+                                  <th>Movie Name</th>
+                                  <th>Show Time</th>
+                                  <th>Seat No</th>
+                                  <th>Amount</th>
+                                  </tr>
+<tr class="tablestyle" ng-show="show">
+<td>{{bklist.BookingID}}</td>
+<td>{{bklist.mName}}</td>
+<td>{{bklist.sTime}}</td>
+<td>{{bklist.seatno}}</td>
+<td>₹{{bklist.amountPaid}}</td>
+<td><button ng-click="cancel(bklist)" class="btn btn-primary" style="margin-top: -10%;">cancel</button></td></tr>
+</div>
+ </tbody>
+  </thead>
+</table>
+</div>
+</div>
+<div class="col-sm-2 sidenav">
+    </div>
+</div>
+</div>

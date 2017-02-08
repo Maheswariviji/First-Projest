@@ -1,0 +1,57 @@
+  <style>
+  .heading
+{
+  width: 45%;
+    margin-bottom: -5%;
+    margin-top: 7%;
+    margin-left: 27%;
+    font-size: xx-large;
+}
+.tablestyle
+{
+  border-style: hidden;
+}
+  </style>
+  <div class="container-fluid" style="margin-top: 3%;">
+<div class="row">
+<div class="col-sm-2 sidenav">
+    </div>
+    <div class="col-sm-8" >
+    <button type="button" class="btn btn-primary btn-lg btn-block heading">Confirmation</button>
+
+<table class="table" style="margin-top: 9%;margin-left: 20%;">
+            <thead>
+                <tbody>
+            <tr class="tablestyle">
+
+                    <tr class="tablestyle"><th>Movie Name</th>  <td>   {{bing.mName}}</td></tr>
+                  <tr class="tablestyle" >  <th>Date</th>  <td>{{bing.BDate}}</td></tr>
+                  <tr class="tablestyle">  <th>Threater Name</th>  <td>  {{bing.tName}}</td></tr>
+                  <tr class="tablestyle">  <th>Id</th> <td>{{bing.BookingID}}</td></tr>
+                  <tr class="tablestyle" >  <th>Location</th><td>{{bing.tLoc}}</td></tr>
+                  <tr class="tablestyle">  <th>Show Time</th>   <td>{{bing.sTime}}</td></tr>
+                  <tr class="tablestyle">  <th>Number of seats</th><td>{{bing.noofTickets}}</td></tr>
+                  <tr class="tablestyle">  <th>Seat Number</th><td>{{bing.seatno}}</td></tr>
+                  <tr class="tablestyle">  <th>Enter Your Name</th><td><input placeholder="Enter Name" ng-model="cnf.customerName" required  /></td></tr>
+                <tr class="tablestyle">  <th>Enter Phone No</th><td><input placeholder="Enter Phone" ng-model="cnf.Phone" required maxlength="10" /></td></tr>
+                 <tr class="tablestyle"><th>
+             Card Number</th>
+             <td>
+              <input type="text"  ng-model="cnf.cardno" placeholder="Enter Valid Card Number" id="Cardno" required maxlength="16" />
+            </td></tr>
+  <tr class="tablestyle"><th>
+          CVV</th>
+           <td>
+                <input type="text"   ng-model="cnf.cvv" placeholder="CVV" id="CVV" required maxlength="3" />
+
+            </td></tr>
+                  <tr class="tablestyle">  <th>Amount</th><td>₹{{bing.amountPaid}}</td></tr>
+  </tbody>
+            </thead>
+          </table>
+<button style="margin-left: 45%;" ng-click="confirm()"   class="btn btn-primary">Confirm</button>
+</div>
+          <div class="col-sm-2 sidenav">
+    </div>
+    </div>
+        </div>

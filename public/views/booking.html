@@ -1,0 +1,243 @@
+<style>
+.tablestyle
+{
+  border-style: hidden;
+}
+.heading
+{
+  width: 45%;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    margin-left: 27%;
+    font-size: xx-large;
+}
+/*seat*/
+.floating-box {
+    float: left;
+    width: 35px;
+    height: 30px;
+
+    font-family: "Comic Sans MS", cursive, sans-serif;
+
+
+    text-align: center;
+    vertical-align: middle;
+
+    background: #ebebe0;
+border-radius: 2px;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+padding: 4px;
+-webkit-box-shadow: 1px 2px 1px #d1d1d1;
+-moz-box-shadow: 1px 2px 1px #d1d1d1;
+box-shadow: 1px 2px 1px #d1d1d1
+}
+p{
+  display:inline;
+  font-family: "Lucida Console", Monaco, monospace
+}
+.after-box {
+    clear: left;
+}
+
+.grey{
+  background-color: #8a8a5c;
+}
+
+.red{
+  background-color: red;
+}
+.d1{
+  float: left;
+  width: 35px;
+  height: 30px;
+  margin: 1px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+
+
+  text-align: center;
+  vertical-align: middle;
+
+  background: #4dff4d;
+border-radius: 2px;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+padding: 4px;
+-webkit-box-shadow: 1px 2px 1px #d1d1d1;
+-moz-box-shadow: 1px 2px 1px #d1d1d1;
+box-shadow: 1px 2px 1px #d1d1d1
+
+}
+
+.d2{
+  border: 2px solid black;
+  background-color: white;
+}
+
+
+.h{
+
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+table { empty-cells: show;}
+
+.strip{
+  border-radius: 50px 50px 10px 10px;
+  color: white;
+  background-color:  #476b6b;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.screen{
+      border-radius: 10px 20px 80px 80px;
+  color: white;
+  background-color:  #476b6b;
+  font-family: Verdana, Geneva, sans-serif;
+}
+.screen1
+{
+    width: 150%;
+    margin-left: -23%;
+    margin-top: 5%;
+  }
+
+  .seatrandom
+  {
+    border: solid;
+   margin: 10px 10px 10px 10px;
+   padding: inherit;
+   background-color: lightgoldenrodyellow;
+  }
+
+</style>
+
+<div class="container">
+  <div class="row content table">
+<button type="button" class="btn btn-primary btn-lg btn-block heading">{{movie.Title}}</button>
+ <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6">
+<table class="table" >
+            <tbody>
+    <tr class="tablestyle">
+<th>BookingID</th><td>
+<input id="randomnumber"  ng-model="
+bking.BookingID"/>
+</td>
+</tr> <!-- <tr class="tablestyle"><p>Add Any One Extra Character</p></tr> -->
+                             <tr class="tablestyle">
+                  <th>Movie Name</th><td>{{movie.Title}}</td></tr>
+
+
+<tr>  <th>Location</th>  <td><select   ng-model="bking.tLoc">
+      <option ng-repeat="now in nowlist |filter:movie.Title"  value="{{now.City}}" >{{now.City}}</option>
+    </select></td></tr>
+                      <tr class="tablestyle">   <th>Theatre Name</th><td><select ng-model="bking.tName" >
+                <option ng-repeat="now in nowlist | filter:movie.Title | filter:bking.tLoc" value="{{now.TName}}">{{now.TName}}</option></select></td></tr>
+
+          <tr class="tablestyle">   <th>Show Time</th><td>
+          <select  ng-model="bking.sTime"><optgroup  label="Select" ng-repeat="now in nowlist | filter:bking.tName | filter: bking.tLoc | filter:movie.Title "><option ng-repeat="n in now.showTime">{{n}}</option></optgroup></select>
+</td>
+</tr>
+  </tr>
+           <tr class="tablestyle"> <th>Show Date</th>
+ <td><input type="date"  ui-date-format="dd/mm/yyyy" name="date" id="date" min="today" required /></td></tr>
+</tr>
+<tr class="tablestyle">
+<th>No of Tickets</th>
+<td>  <select class="" id="seats" ng-model="bking.noofTickets">Tickets
+  <option value="1">1</option>
+      <option value="2">2</option>
+      <option  value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select></td>
+</tr>
+      <tr class="tablestyle">  <th><a ng-click="show()" class="btn btn-primary">Select Your Seats</a></th><td> <div>
+
+   <div class="content"  ng-show="goCats">
+    <table class="seatLayout" >
+    <div class="legend">
+       <div style="
+    margin-left: 22%;
+"> <img src="../resources/images/W_chair.gif">  Available</div>
+      <div style="margin-top: -5%; margin-left: 49%;">  <img src="../resources/images/R_chair.gif" class="padding-left">  Booked</div>
+  </div>
+    <tbody>
+      <tr class="tablestyle">
+            <td class="padding-bottom"></td>
+            <td class="padding-bottom" ng-repeat="col in cols track by $index" ng-bind="col"></td>
+        </tr>
+        <tr class="tablestyle" ng-repeat="row in rows">
+            <td class="padding-right" ng-bind="row"></td>
+            <td class="seat" ng-repeat="col in cols" ng-click="seatClicked(row + col)" ng-switch on="getStatus(row + col)" style="padding: 5px 5px 5px 5px;">
+                <img ng-switch-when="selected" src="../resources/images/G_chair.gif">
+                <img ng-switch-when="reserved" src="../resources/images/R_chair.gif">
+                <img ng-switch-default src="../resources/images/W_chair.gif">
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="screen1"><img src="../resources/images/p3_r1_c1.jpg" style="width: 83%;"></div>
+</div>
+</div>
+
+    </td></tr>
+         </div>
+
+	</tbody>	</thead>
+									 	</table>
+				</div>
+				 <div class="col-md-6">
+           <div class="col-md-6" style="margin-bottom: 2%;width: 33%;">
+             <img src="{{movie.Poster}}" style="width: 150px;height: 150px;" class = "img-thumbnail">
+           </div>
+           <div class="col-md-6" style="margin-bottom: 2%;margin-left: -3%;    width: 70%;line-height: 23px;">
+             <table class="table" >
+                         <tbody>
+                 <tr class="tablestyle"><th>
+<span class="badge cmt">  SYNOPSIS</span> </th><td> {{movie.Plot}}</br></td></tr>
+ <tr class="tablestyle"><th><span class="badge cmt">GENRE</span> </th><td>  {{movie.Genre}}</br></td></tr>
+ <tr class="tablestyle"><th><span class="badge cmt">DIRECTOR</span></th><td>  {{movie.Director}}</br></td></tr>
+ <tr class="tablestyle"><th><span class="badge cmt">ACTORS</span></th><td> {{movie.Actors}}</br></td></tr>
+ <tr class="tablestyle"><th><span class="badge cmt">RATING</span></th><td> <span class="glyphicon glyphicon-heart" style="color:#286090;">{{movie.avg}}%</span></br></td></tr>
+ </tbody>
+ </table>
+	</div>
+
+<div>
+</div>
+<div>
+<table class="table" >
+            <tbody>
+  <tr class="tablestyle">
+      <th>Seats Selected :</th><td><p id="st"></p></td>
+    </tr>
+    <tr class="tablestyle">
+      <th>Total Seats : </th><td><p id="totalst"></p></td>
+    </tr>
+    <tr class="tablestyle">
+      <th>Total Amount :</th><td>₹<p id="amt" ></p></td>
+    </tr>
+
+    <tr class="tablestyle">
+      <td><button ng-click="addbk()"  class="btn btn-primary" >Proceed To Pay</button><td>
+           <td><button ng-click="refreshbk()" class="btn btn-primary">Reset</button><td>
+    </tr>
+  </tbody>
+</table>
+</div>
+	</div>
+	</div>
+</div>
+  </div>
+      </div>
+        </div>
+</div>
